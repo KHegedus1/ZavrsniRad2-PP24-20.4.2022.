@@ -1,0 +1,30 @@
+<form action="<?=App::config('url')?>proizvod/promijeni" method="post" id="program">
+
+    <fieldset>
+        <legend>Promjena postojećeg  web proizvoda</legend>
+
+    <label for="zanr">Kategorija</label>
+    <input type="text" name="kategorija" id="kategorija" value="<?= $proizvod->kategorija ?>">
+
+    <label for="naziv">Naziv</label>
+    <input type="text" name="naziv" id="naziv" value="<?= $proizvod->naziv ?>">
+
+    <label for="cijena">Cijena</label>
+    <input type="text" name="cijena" id="cijena" value="<?= $proizvod->cijena ?>">
+
+    <input type="hidden" name="sifra" value="<?=$proizvod->sifra?>">
+
+    <div class="grid-x grid-padding-x">
+            <div class="large-4 cell">
+                <a  class="alert button expanded" href="<?=App::config('url')?>proizvod/index">Odustani</a>
+            </div>
+            <div class="large-8 cell">
+                <input type="submit" class="success button expanded" value="Promijeni">
+            </div>
+    </div>
+
+    <?=$poruka?>
+
+    </fieldset>
+
+</form>
