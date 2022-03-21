@@ -7,8 +7,7 @@ class Narudzba
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.postanskiBroj, b.email, a.iznos, a.datumNarudzbe, 
-        a.nacinPlacanja, a.dostavnaSluzba, a.datumDostave, a.isporuceno
+        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.email, a.iznos, a.narudzba
         from narudzba a inner join kupac b on
         a.kupac = b.sifra
         where a.sifra=:parametar;
@@ -22,11 +21,10 @@ class Narudzba
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.postanskiBroj, b.email, a.iznos, a.datumNarudzbe, 
-        a.nacinPlacanja, a.dostavnaSluzba, a.datumDostave, a.isporuceno
+        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.email, a.iznos, a.narudzba, 
         from narudzba a inner join kupac b on
         a.kupac = b.sifra
-        where isporuceno is true;
+        where kupac is true;
         order by 3,2;
         
         ');
@@ -39,8 +37,8 @@ class Narudzba
         $veza->beginTransaction();
         $izraz = $veza->prepare('
         
-        insert into kupac (ime, prezime, ulica, kucniBroj, grad, postanskiBroj, email) values
-        (:ime, :prezime, :ulica, :kucniBroj, :grad, :postanskiBroj, :email)
+        insert into kupac (ime, prezime, ulica, kucniBroj, grad,email) values
+        (:ime, :prezime, :ulica, :kucniBroj, :grad, :email)
         
         ');
         $izraz->execute([
@@ -49,7 +47,6 @@ class Narudzba
             'ulica'=>$parametri['ulica'],
             'kucniBroj'=>$parametri['kucniBroj'],
             'grad'=>$parametri['grad'],
-            'postanskiBroj'=>$parametri['postanskiBroj'],
             'email'=>$parametri['email']
         ]);
 
@@ -57,18 +54,14 @@ class Narudzba
 
         $izraz = $veza->prepare('
         
-        insert into narudzba (kupac, iznos, datumNarudzbe, nacinPlacanja, dostavnaSluzba, datumDostave, isporuceno) values
-        (:kupac, :iznos, :datumNarudzbe, :nacinPlacanja, :dostavnaSluzba, :datumDostave, :isporuceno)
+        insert into narudzba (kupac, iznos, narudzba) values
+        (:kupac, :iznos, :narudzba)
         
         ');
         $izraz->execute([
             'kupac'=>$zadnjaSifra,
             'iznos'=>$parametri['iznos'],
-            'datumNarudzbe'=>$parametri['datumNarudzbe'],
-            'nacinPlacanja'=>$parametri['nacinPlacanja'],
-            'dostavnaSluzba'=>$parametri['dostavnaSluzba'],
-            'datumDostave'=>$parametri['datumDostave'],
-            'isporuceno'=>$parametri['isporuceno']
+            'narudzba'=>$parametri['narudzba'],
         ]);
 
         $veza->commit();
@@ -96,8 +89,7 @@ class Narudzba
         ulica=:ulica,
         kucniBroj=:kucniBroj,
         grad=:grad,
-        postanskiBroj=:postanskiBroj,
-        email=:email
+        email=:email,
         where sifra=:sifra
         
         ');
@@ -108,7 +100,6 @@ class Narudzba
             'ulica'=>$parametri['ulica'],
             'kucniBroj'=>$parametri['kucniBroj'],
             'grad'=>$parametri['grad'],
-            'postanskiBroj'=>$parametri['postanskiBroj'],
             'email'=>$parametri['email']
         ]);
 
@@ -116,22 +107,14 @@ class Narudzba
         
         update narudzba set
         iznos=:iznos,
-        datumNarudzbe=:datumNarudzbe,
-        nacinPlacanja=:nacinPlacanja,
-        dostavnaSluzba=:dostavnaSluzba,
-        datumDostave=:datumDostave,
-        isporuceno=:isporuceno
+        narudzba=:narudzba,
         where sifra=:sifra
         
         ');
         $izraz->execute([
             'sifra'=>$parametri['sifra'],
             'iznos'=>$parametri['iznos'],
-            'datumNarudzbe'=>$parametri['datumNarudzbe'],
-            'nacinPlacanja'=>$parametri['nacinPlacanja'],
-            'dostavnaSluzba'=>$parametri['dostavnaSluzba'],
-            'datumDostave'=>$parametri['datumDostave'],
-            'isporuceno'=>$parametri['isporuceno']
+            'narudzba'=>$parametri['narudzba']
         ]);
 
         $veza->commit();
