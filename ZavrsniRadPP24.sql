@@ -44,4 +44,4 @@ alter table narudzba add foreign key (kupac) references kupac(sifra);
 alter table narudzba add foreign key (proizvod) references proizvod(sifra);
 
 insert into operater(email,lozinka,ime,prezime,uloga) values
-('khegedus@gmail.com','$2a$12$gcFbIND0389tUVhTMGkZYem.9rsMa733t9J9e9bZcVvZiG3PEvSla','Kristijan','Hegedus','admin');
+('khegedus1@gmail.com','$2a$12$gcFbIND0389tUVhTMGkZYem.9rsMa733t9J9e9bZcVvZiG3PEvSla','Kristijan','Hegedus','admin');
