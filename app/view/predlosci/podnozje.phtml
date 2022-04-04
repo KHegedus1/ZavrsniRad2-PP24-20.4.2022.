@@ -1,0 +1,26 @@
+<div class="podnozje">
+    <hr <?php
+    if(App::config('dev')){
+        echo 'style="border: 7px solid blue;"';
+    }
+
+    ?> />
+
+    <div class="podnozje-logo">
+    <?php
+        if(App::config('dev')){
+        echo '<span style="color: blue">DEVELOPMENT</span>';
+        }
+
+    </div>
+    <div class="podnozje-lista">
+        <ul>
+            <li><a class="podnozje-link" href="<?=App::config('url')?>">Početna</a></li>
+            <li><a class="podnozje-link" href="#">O nama</a></li>
+            <li><a class="podnozje-link" href="#">Kontakt</a></li>
+        </ul>
+    </div>
+    
+
+
+</div>
