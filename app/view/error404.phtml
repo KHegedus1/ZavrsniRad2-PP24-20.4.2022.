@@ -1,1 +1,13 @@
-treba jos urediti
+<?php if(!App::config('dev')):?>
+    
+    <div class="grid-x grid-padding-x" style="margin-top: 150px;">                   
+    </div>
+
+    <div class="grid-x grid-padding-x" style="text-align: center">
+        <h1 class="pozdrav">Error 404</h1>
+    </div>
+<?php else: ?>
+
+    Ne postoji <?=$onoceganema?>
+    
+<?php endif;?>
