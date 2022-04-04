@@ -3,19 +3,18 @@
   <div class="title-bar-title"><?=App::config('naslovApp')?></div>
 </div>
 
-<div class="top-bar" id="example-menu" style="background-color: blue">
-  <div class="top-bar-left" style="background-color: blue">
-    <ul class="dropdown menu" data-dropdown-menu style="background-color: blue">
+<div class="top-bar" id="example-menu" style="background-color: CornflowerBlue">
+  <div class="top-bar-left" style="background-color: CornflowerBlue">
+    <ul class="dropdown menu" data-dropdown-menu style="background-color: CornflowerBlue">
       <li><a href="<?=App::config('url')?>"><i class="fas fa-home" style="color: white"></i></a></li>
       <?php if(App::autoriziran()): ?>
-        <li><a href="<?=App::config('url')?>nadzornaploca/index" style="color:white">Nadzorna ploča</a></li>
       <?php endif; ?>
       <?php if(App::autoriziran()): ?>
-        <li><a href="#" style="color:white">Programi</a>
-          <ul class="submenu menu vertical" data-submenu style="background-color: blue">
-            <li><a href="<?=App::config('url')?>kupac/index" style="color:white">Kupac</a></li>
-            <li><a href="<?=App::config('url')?>proizvod/index" style="color:white">Proizvod</a></li>
-            <li><a href="<?=App::config('url')?>narudzba/index" style="color:white">Narudžba</a></li>
+        <li><a href="#" style="color:white">Menu</a>
+          <ul class="submenu menu vertical" data-submenu style="background-color: CornflowerBlue">
+            <li><a href="<?=App::config('url')?>info/index" style="color:white">Info</a></li>
+            <li><a href="<?=App::config('url')?>proizvod/index" style="color:white">Proizvodi</a></li>
+            <li><a href="<?=App::config('url')?>prednarudzba/index" style="color:white">Prednarudžba</a></li>
           </ul>
         </li>
       <?php endif; ?>  
@@ -23,7 +22,7 @@
   </div>
   <div class="top-bar-right" style="background-color: black">
     <ul class="menu">
-      <li style="background-color: black">
+      <li style="background-color: yellow">
         <?php if(App::autoriziran()): ?>
           <a class="prijava-dugme" href="<?=App::config('url')?>login/odjava">Odjava <?php echo $_SESSION['autoriziran']->ime ?></a>
         <?php else: ?>

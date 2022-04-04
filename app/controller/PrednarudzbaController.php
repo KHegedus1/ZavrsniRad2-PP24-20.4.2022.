@@ -1,9 +1,9 @@
 <?php
 
-class NarudzbaController extends AutorizacijaController
+class PrednarudzbaController extends AutorizacijaController
 {
 
-    private $viewDir = 'privatno' . DIRECTORY_SEPARATOR . 'narudzbe' . DIRECTORY_SEPARATOR;
+    private $viewDir = 'privatno' . DIRECTORY_SEPARATOR . 'prednarudzbe' . DIRECTORY_SEPARATOR;
 
     public function index()
     {
