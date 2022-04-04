@@ -1,7 +1,7 @@
 <?php
   
   if($_SERVER['SERVER_ADDR']==='127.0.0.1'){
-      $url = 'http://zavrsni2.xyz';
+      $url = 'http://zavrsni2.xyz/';
       $dev = true;
       $baza = [
           'server'=>'localhost',
