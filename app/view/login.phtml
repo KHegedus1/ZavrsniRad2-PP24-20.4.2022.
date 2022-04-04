@@ -1,1 +1,13 @@
-treba jos urediti!
+<form class="log-in-form" action="<?=App::config('url')?>login/autoriziraj" method="POST">
+  <h4 class="text-center" style="color:white">Prijava</h4>
+  <label style="color:white">Email
+    <input type="email" name="email"  value="<?=$email?>">
+  </label>
+  <label style="color:white">Lozinka
+    <input type="password" name="lozinka">
+  </label>
+  <p>
+    <input type="submit" class="button expanded" value="Prijavi se" id="potvrdi-dugme"></input>
+  </p>
+  <span style="color:white"><?=$poruka?></span>
+</form>
