@@ -14,9 +14,9 @@
       $dev = false;
       $baza = [
           'server'=>'localhost',
-          'baza'=>'zavrsniRadPP24',
-          'korisnik'=>'Hegedus',
-          'lozinka'=>'Hegedus'
+          'baza'=>'furije_webshop',
+          'korisnik'=>'furije_webshop',
+          'lozinka'=>'suG?e49uzE9W'
       ];
   }
   
