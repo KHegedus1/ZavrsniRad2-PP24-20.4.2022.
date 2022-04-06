@@ -66,7 +66,6 @@ class ProizvodController extends AutorizacijaController
         $this->pripremiPodatke();
 
         if($this->kontrolaNaziv()
-        && $this->kontrolaIzvodac()
         && $this->kontrolaCijena()){
             Proizvod::create((array)$this->proizvod);
             header('location:' . App::config('url') . 'proizvod/index');
@@ -83,7 +82,6 @@ class ProizvodController extends AutorizacijaController
         $this->pripremiPodatke();        
         
         if($this->kontrolaNaziv()
-        && $this->kontrolaIzvodac()
         && $this->kontrolaCijena()){
             Proizvod::update((array)$this->proizvod);
             header('location:' . App::config('url') . 'proizvod/index');
