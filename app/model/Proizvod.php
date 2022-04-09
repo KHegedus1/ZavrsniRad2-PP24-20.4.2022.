@@ -27,7 +27,7 @@ class Proizvod
         from proizvod a left join kosarica b
         on a.sifra=b.proizvod
         where concat(a.naziv) like :uvjet
-        group by a.sifra,a.naziv, a.cijena,a.kategorija
+        group by a.sifra,a.naziv,a.cijena,a.kategorija
         order by 3, 4
         limit :od, :rps
         
