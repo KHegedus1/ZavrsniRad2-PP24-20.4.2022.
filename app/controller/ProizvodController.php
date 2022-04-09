@@ -17,9 +17,9 @@ class ProizvodController extends AutorizacijaController
         $this->nf=new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
         $this->nf->setPattern('#,##0.00 kn');
         $this->proizvod=new stdClass();
-        $this->proizvod->kategorija='';
         $this->proizvod->naziv='';
         $this->proizvod->cijena='';
+        $this->proizvod->kategorija='';
     }
 
     public function index()

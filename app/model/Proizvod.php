@@ -18,11 +18,11 @@ class Proizvod
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        select a.sifra, a.kategorija, a.cijena, a.naziv,
+        select a.sifra,a.naziv,a.cijena,a.kategorija, 
         count(b.sifra) as kupac
         from proizvod a left join kupac b
         on a.sifra=b.proizvod
-        group by a.sifra, a.kategorija, a.cijena, a.naziv,
+        group by a.sifra, a.naziv, a.cijena, a.kategorija,
         order by 3;
         
         ');
