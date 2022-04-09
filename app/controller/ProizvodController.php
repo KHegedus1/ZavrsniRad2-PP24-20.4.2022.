@@ -24,7 +24,22 @@ class ProizvodController extends AutorizacijaController
 
     public function index()
     {
-        $proizvodi = Proizvod::read();
+        if(!isset($_GET['stranica'])){
+            $stranica=1;
+        }else{
+            $stranica=(int)$_GET['stranica'];
+        }
+        if($stranica==0){
+            $stranica=1;
+        }
+
+        if(!isset($_GET['uvjet'])){
+            $uvjet='';
+        }else{
+            $uvjet=$_GET['uvjet'];
+        }
+
+        $proizvodi = Proizvod::read($stranica,$uvjet);
 
         foreach($proizvodi as $proizvod){
             $proizvod->cijena=$this->nf->format($proizvod->cijena);            
@@ -32,13 +47,13 @@ class ProizvodController extends AutorizacijaController
         
         $this->view->render($this->viewDir . 'index',[
             'proizvodi'=>$proizvodi,
-            'css'=>'<link rel="stylesheet" href="' . App::config('url') . 'public/css/webShopArtikl1.css">'
+            'css'=>'<link rel="stylesheet" href="' . App::config('url') . 'public/css/proizvodindex.css">'
         ]);
     }
 
     public function novi()
     {
-        $this->view->render($this->viewDir . 'dodani',[
+        $this->view->render($this->viewDir . 'novi',[
             'poruka'=>'',
             'proizvod'=>$this->proizvod
         ]);
@@ -66,11 +81,11 @@ class ProizvodController extends AutorizacijaController
         $this->pripremiPodatke();
 
         if($this->kontrolaNaziv()
-        && $this->kontrolaCijena()){
+        && $this->kontrolaCijena()
             Proizvod::create((array)$this->proizvod);
             header('location:' . App::config('url') . 'proizvod/index');
         }else{
-            $this->view->render($this->viewDir . 'dodani',[
+            $this->view->render($this->viewDir . 'novi',[
                 'poruka'=>$this->poruka,
                 'proizvod'=>$this->proizvod
             ]);
@@ -82,7 +97,7 @@ class ProizvodController extends AutorizacijaController
         $this->pripremiPodatke();        
         
         if($this->kontrolaNaziv()
-        && $this->kontrolaCijena()){
+        && $this->kontrolaCijena()
             Proizvod::update((array)$this->proizvod);
             header('location:' . App::config('url') . 'proizvod/index');
         }else{
@@ -103,19 +118,19 @@ class ProizvodController extends AutorizacijaController
     {
         $this->proizvod=(object)$_POST;
     }
-
     private function kontrolaNaziv()
     {
         if(strlen($this->proizvod->naziv)===0){
-            $this->poruka='Unesite naziv';
+            $this->poruka='Molimo vas unesite ime igre';
             return false;
         }
-        if(strlen($this->proizvod->naziv)>50){
-            $this->poruka='Naziv mora imati manje od 50 znakova.';
+        if(strlen($this->proizvod->naziv)>40){
+            $this->poruka='Naziv ne smije biti duži od 40 znakova';
             return false;
         }        
         return true;
-    }
+    }    
+    
     private function kontrolaCijena()
     {
         if(strlen(trim($this->proizvod->cijena))>0){
@@ -129,12 +144,13 @@ class ProizvodController extends AutorizacijaController
             $this->proizvod->cijena = (float)str_replace(',','.',$this->proizvod->cijena);
 
             if($this->proizvod->cijena<=0){
-                $this->poruka='Cijena mora biti decimalni broj veći od 0, a unijeli ste: ' . $this->proizvod->cijena;
+                $this->poruka='Cijena mora biti decimalni broj i veći od nule,a Vaš unos je bio: ' . $this->proizvod->cijena;
                 $this->proizvod->cijena='';
                 return false;
             }
         }
 
         return true;
-    }    
+    }
+    
 }

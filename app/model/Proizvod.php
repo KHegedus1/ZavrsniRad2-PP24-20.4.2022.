@@ -2,6 +2,7 @@
 
 class Proizvod
 {
+
     public static function readOne($kljuc)
     {
         $veza = DB::getInstanca();
@@ -13,19 +14,28 @@ class Proizvod
         $izraz->execute(['parametar'=>$kljuc]);
         return $izraz->fetch();
     }
-    public static function read()
+    public static function read($stranica, $uvjet)
     {
+        $rps = App::config('rps');
+        $od = $stranica * $rps - $rps;
+
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        select a.sifra,a.naziv,a.cijena,a.kategorija, 
-        count(b.sifra) as kupac
-        from proizvod a left join kupac b
+        select a.sifra,a.naziv, a.cijena, a.kategorija,
+        count(b.sifra) as kosarica
+        from proizvod a left join kosarica b
         on a.sifra=b.proizvod
-        group by a.sifra, a.naziv, a.cijena, a.kategorija,
-        order by 3;
+        where concat(a.naziv) like :uvjet
+        group by a.sifra,a.naziv, a.cijena,a.kategorija
+        order by 3, 4
+        limit :od, :rps
         
         ');
+        $uvjet = '%' . $uvjet . '%';
+        $izraz->bindValue('od',$od,PDO::PARAM_INT);
+        $izraz->bindValue('rps',$rps,PDO::PARAM_INT);
+        $izraz->bindParam('uvjet',$uvjet);
         $izraz->execute();
         return $izraz->fetchAll();
     }
@@ -34,12 +44,13 @@ class Proizvod
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        insert into proizvod (naziv,cijena,kategorija,sifra)
-        values (:naziv,:cijena,:kategorija,:sifra);
+        insert into proizvod (naziv,cijena,kategorija)
+        values (:naziv,:cijena,:kategorija);
         
         ');
         $izraz->execute($parametri);
     }
+    
     public static function update($parametri)
     {
         $veza = DB::getInstanca();
@@ -48,7 +59,7 @@ class Proizvod
         update proizvod set 
             naziv=:naziv,
             cijena=:cijena,
-            kategorija=kategorija,
+            kategorija=:kategorija,
             where sifra=:sifra;
         
         ');
