@@ -57,13 +57,13 @@ insert into operater(email,lozinka,ime,prezime,uloga) values
 ('khegedus1@gmail.com','$2a$12$gcFbIND0389tUVhTMGkZYem.9rsMa733t9J9e9bZcVvZiG3PEvSla','Kristijan','Hegedus','admin');
 
 insert into proizvod (sifra,naziv,cijena,kategorija) values
-(null,'Metroid Dread','399.99','Akcijska avantura'),
-(null,'Triangle Strategy','342.99','RPG'),
-(null,'Mario Kart 3','499.99','Utrke'),
-(null,'Big Brain Academy','222.99','Puzzle'),
-(null,'Monster Hunter Rise','265.99','Akcijski RPG'),
-(null,'Super Mario Odyssey','99.99','Avantura'),
-(null,'Live A Live','499.99','Avantura'),
-(null,'Splatoon','299.99','FPS',),
-(null,'The Legend of Zelda: Skyward Sword','129.99','Avantura'),
-(null,'Donkey Kong Country Tropical Freeze','111.99','Avantura');
+(null,'Metroid Dread',399.99,'Akcijska avantura'),
+(null,'Triangle Strategy',342.99,'RPG'),
+(null,'Mario Kart 3',499.99,'Utrke'),
+(null,'Big Brain Academy',222.99,'Puzzle'),
+(null,'Monster Hunter Rise',265.99,'Akcijski RPG'),
+(null,'Super Mario Odyssey',99.99,'Avantura'),
+(null,'Live A Live',499.99,'Avantura'),
+(null,'Splatoon',299.99,'FPS',),
+(null,'The Legend of Zelda: Skyward Sword',129.99,'Avantura'),
+(null,'Donkey Kong Country Tropical Freeze',111.99,'Avantura');
