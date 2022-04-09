@@ -64,6 +64,6 @@ insert into proizvod (sifra,naziv,cijena,kategorija) values
 (null,'Monster Hunter Rise',265.99,'Akcijski RPG'),
 (null,'Super Mario Odyssey',99.99,'Avantura'),
 (null,'Live A Live',499.99,'Avantura'),
-(null,'Splatoon',299.99,'FPS',),
+(null,'Splatoon',299.99,'FPS'),
 (null,'The Legend of Zelda: Skyward Sword',129.99,'Avantura'),
 (null,'Donkey Kong Country Tropical Freeze',111.99,'Avantura');
