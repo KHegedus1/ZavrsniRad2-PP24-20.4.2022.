@@ -51,9 +51,9 @@ class ProizvodController extends AutorizacijaController
         ]);
     }
 
-    public function dodani()
+    public function novi()
     {
-        $this->view->render($this->viewDir . 'dodani',[
+        $this->view->render($this->viewDir . 'novi',[
             'poruka'=>'',
             'proizvod'=>$this->proizvod
         ]);
@@ -85,7 +85,7 @@ class ProizvodController extends AutorizacijaController
             Proizvod::create((array)$this->proizvod);
             header('location:' . App::config('url') . 'proizvod/index');
         }else{
-            $this->view->render($this->viewDir . 'dodani',[
+            $this->view->render($this->viewDir . 'novi',[
                 'poruka'=>$this->poruka,
                 'proizvod'=>$this->proizvod
             ]);

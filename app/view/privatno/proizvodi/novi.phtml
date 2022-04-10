@@ -1,16 +1,16 @@
-<form action="<?=App::config('url')?>proizvod/dodajNovi" method="post" id="program">
+<form action="<?=App::config('url')?>proizvod/dodajNovi" method="post" class="forma-unos">
 
     <fieldset>
         <legend>Dodavanje novog web proizvoda</legend>
-
-    <label for="kategorija">Kategorija</label>
-    <input type="text" name="zanr" id="kategorija" value="<?= $proizvod->kategorija ?>">
 
     <label for="naziv">Naziv</label>
     <input type="text" name="naziv" id="naziv" value="<?= $proizvod->naziv ?>">
 
     <label for="cijena">Cijena</label>
     <input type="text" name="cijena" id="cijena" value="<?= $proizvod->cijena ?>">
+
+    <label for="kategorija">Kategorija</label>
+    <input type="text" name="kategorija" id="kategorija" value="<?= $proizvod->kategorija ?>">
 
     <div class="grid-x grid-padding-x">
             <div class="large-4 cell">
