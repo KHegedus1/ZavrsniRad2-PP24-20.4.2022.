@@ -16,6 +16,9 @@ display:block;
     margin-left: 65px;
     margin-top : 60px;
 }
+#pozdrav{
+  color: brown;
+}
 * {box-sizing:border-box}
 
 .slideshow-container {
