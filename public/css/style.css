@@ -1,3 +1,16 @@
+.mapouter{
+  margin-left: 25px;
+  margin-bottom: 30px;
+}
+#mario{
+  width:500px;
+  height:500px;
+  float:right;
+  margin-right: 20px;
+}
+h5{
+  color:cornflowerblue;
+}
  body{
     background-color: CornFlowerblue;
   }
