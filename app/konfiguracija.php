@@ -23,6 +23,7 @@
   return [
       'dev'=>$dev,
       'url'=>$url,
+      'rps'=>10,
       'naslovApp'=>'zavrsniRadPP24',
       'baza'=>$baza
   ];
