@@ -2,18 +2,19 @@
 display:block;
 }
 #reklama{
+    position:relative;
+    display:inline-block;
     padding-bottom: 50px;
-    padding-right : 15px;
-    margin-top : 20px;
+    padding-right : 65px;
     float:right;
-    height:175px;
-    width:1550px;
+    height:260px;
+    width:1250px;
 }
 .dmreze{
     display: inline-block;
-    width:50px;
-    margin-left: 15px;
-    margin-top : 50px;
+    width:70px;
+    margin-left: 65px;
+    margin-top : 60px;
 }
 * {box-sizing:border-box}
 
