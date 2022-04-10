@@ -44,10 +44,10 @@ class ProizvodController extends AutorizacijaController
         foreach($proizvodi as $proizvod){
             $proizvod->cijena=$this->nf->format($proizvod->cijena);            
         }
-        
+
         $this->view->render($this->viewDir . 'index',[
             'proizvodi'=>$proizvodi,
-            'css'=>'<link rel="stylesheet" href="' . App::config('url') . 'public/css/proizvodindex.css">'
+            'css'=>'<link rel="stylesheet" href="' . App::config('url') . 'public/css/style.css">'
         ]);
     }
 
