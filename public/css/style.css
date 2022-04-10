@@ -1,3 +1,10 @@
+.log2{
+  border: 20px solid CornFlowerblue;
+    padding: 15px;
+    border-radius: 30px;
+    max-width: 400px;
+    margin: auto;
+}
 #dmrezeWrap{
 display:block;
 }

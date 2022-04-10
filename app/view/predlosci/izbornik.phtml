@@ -6,15 +6,15 @@
 <div class="top-bar" id="example-menu" style="background-color: CornflowerBlue">
   <div class="top-bar-left" style="background-color: CornflowerBlue">
     <ul class="dropdown menu" data-dropdown-menu style="background-color: CornflowerBlue">
-      <li><a href="<?=App::config('url')?>"><i class="fas fa-home" style="color: white"></i></a></li>
+      <li><a href="<?=App::config('url')?>"><i class="fas fa-home" style="color: yellow"></i></a></li>
       <?php if(App::autoriziran()): ?>
       <?php endif; ?>
       <?php if(App::autoriziran()): ?>
         <li><a href="#" style="color:white">Menu</a>
           <ul class="submenu menu vertical" data-submenu style="background-color: CornflowerBlue">
-            <li><a href="<?=App::config('url')?>info/index" style="color:white">Info</a></li>
-            <li><a href="<?=App::config('url')?>proizvod/index" style="color:white">Proizvodi</a></li>
-            <li><a href="<?=App::config('url')?>uskorouponudi/index" style="color:white">Uskoro u ponudi</a></li>
+            <li><a href="<?=App::config('url')?>info/index" style="color:yellow">Info</a></li>
+            <li><a href="<?=App::config('url')?>proizvod/index" style="color:yellow">Proizvodi</a></li>
+            <li><a href="<?=App::config('url')?>uskorouponudi/index" style="color:yellow">Uskoro u ponudi</a></li>
           </ul>
         </li>
       <?php endif; ?>  
