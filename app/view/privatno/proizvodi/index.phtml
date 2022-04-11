@@ -1,3 +1,6 @@
+<form action="<?=App::config('url')?>proizvod/index" method="get" class="forma-unos" style="margin-bottom: 25px;">
+    <input type="text" name="uvjet" placeholder="Unesite dio naziva igre" style="margin-top: 10px; border-radius: 50px;">
+</form>
 <div class="grid-x">
     <div class="cell large-6">
         <h1 style="font-size: 1.5rem;">Proizvodi</h1>
@@ -14,14 +17,13 @@
     <thead>
         <tr>
             <th>Naziv</th>
-            <th>Cijena</th>   
-            <th>Kategorija</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach($proizvodi as $proizvod): ?>
             <tr>
                 <td><?=$proizvod->naziv?></td>
+                <td><img src="<?=App::config('url')?>public/img/proizvodi/<?=$proizvod->sifra . '.jpg'?>" class="proizvod-slika"></td>
                 <td><?=$proizvod->cijena?></td>
                 <td><?=$proizvod->kategorija?></td>
                 <td>
