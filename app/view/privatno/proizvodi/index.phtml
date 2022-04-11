@@ -1,3 +1,7 @@
+<form action="<?=App::config('url')?>proizvod/index" method="get">
+    <input type="text" name="uvjet" 
+    placeholder="Unesite dio imena igre" />
+</form>
 <div class="grid-x">
     <div class="cell large-6">
         <h1 style="font-size: 1.5rem;">Proizvodi</h1>
@@ -14,7 +18,8 @@
     <thead>
         <tr>
             <th>Naziv</th>
-            <th>Cijena</th>   
+            <th>Cijena</th>
+            <th>Kategorija</th>   
         </tr>
     </thead>
     <tbody>
@@ -22,6 +27,8 @@
             <tr>
                 <td><?=$proizvod->naziv?></td>
                 <td><?=$proizvod->cijena?></td>
+                <td><?=$proizvod->kategorija?></td>
+
                 <td>
                     <?php if($proizvod->kategorija>0): ?>
                         <i style="color: green; " 
