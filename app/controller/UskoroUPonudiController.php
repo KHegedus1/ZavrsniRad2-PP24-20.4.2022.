@@ -1,6 +1,6 @@
 <?php
 
-class UskoroUPonudiController extends AutorizacijaController
+class UskorouponudiController extends AutorizacijaController
 {
 
     private $viewDir = 'privatno' . DIRECTORY_SEPARATOR . 'uskorouponudi' . DIRECTORY_SEPARATOR;
