@@ -70,7 +70,7 @@ class ProizvodController extends AutorizacijaController
         }
 
         $this->view->render($this->viewDir . 'promjena',[
-            'poruka'=>'Promijenite podatke',
+            'poruka'=>'Promjenite podatke',
             'proizvod'=>$this->proizvod
         ]);
 
@@ -92,7 +92,7 @@ class ProizvodController extends AutorizacijaController
         }        
     }
 
-    public function promijeni()
+    public function promjeni()
     {
         $this->pripremiPodatke();        
         
