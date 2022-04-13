@@ -92,7 +92,7 @@ class ProizvodController extends AutorizacijaController
         }        
     }
 
-    public function promjeni()
+    public function promjena()
     {
         $this->pripremiPodatke();        
         
