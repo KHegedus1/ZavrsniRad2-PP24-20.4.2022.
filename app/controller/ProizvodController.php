@@ -59,7 +59,7 @@ class ProizvodController extends AutorizacijaController
         ]);
     }
 
-    public function promijena($id)
+    public function promjena($id)
     {
         $this->proizvod = Proizvod::readOne($id);
 
@@ -69,8 +69,8 @@ class ProizvodController extends AutorizacijaController
             $this->proizvod->cijena=$this->nf->format($this->proizvod->cijena);
         }
 
-        $this->view->render($this->viewDir . 'promijena',[
-            'poruka'=>'Promijenite podatke',
+        $this->view->render($this->viewDir . 'promjena',[
+            'poruka'=>'Promjenite podatke',
             'proizvod'=>$this->proizvod
         ]);
 
@@ -92,7 +92,7 @@ class ProizvodController extends AutorizacijaController
         }        
     }
 
-    public function promijeni()
+    public function promjeni()
     {
         $this->pripremiPodatke();        
         
@@ -101,7 +101,7 @@ class ProizvodController extends AutorizacijaController
             Proizvod::update((array)$this->proizvod);
             header('location:' . App::config('url') . 'proizvod/index');
         }else{
-            $this->view->render($this->viewDir . 'promijena',[
+            $this->view->render($this->viewDir . 'promjena',[
                 'poruka'=>$this->poruka,
                 'proizvod'=>$this->proizvod
             ]);
