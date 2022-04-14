@@ -25,18 +25,15 @@ create table kupac(
 
 create table narudzba(
     sifra           int not null primary key auto_increment,
-    kupac           int not null,
-    proizvod        int not null,
-    iznos           decimal(18,2) not null,
-    datum           datetime not null
+    kupac           int not null
 );
 
 create table kosarica (
     sifra       int not null primary key auto_increment,
     narudzba    int not null,
     proizvod    int not null,
-    kolicina    int not null,
-    cijena      decimal(18,2) not null
+    kolicina    int not null
+
 );
 
 create table proizvod(
@@ -48,10 +45,10 @@ create table proizvod(
 );
 
 
-alter table proizvod add foreign key (kategorija) references kategorija(id);
-alter table narudzba add foreign key (kupac) references kupac(id);
-alter table kosarica add foreign key (narudzba) references naruzdba(id);
-alter table kosarica add foreign key (proizvod) references proizvod(id);
+alter table narudzba add foreign key (kupac) references kupac(sifra);
+
+alter table kosarica add foreign key (narudzba) references narudzba(sifra);
+alter table kosarica add foreign key (proizvod) references proizvod(sifra);
 
 insert into operater(email,lozinka,ime,prezime,uloga) values
 ('khegedus1@gmail.com','$2a$12$gcFbIND0389tUVhTMGkZYem.9rsMa733t9J9e9bZcVvZiG3PEvSla','Kristijan','Hegedus','admin');
