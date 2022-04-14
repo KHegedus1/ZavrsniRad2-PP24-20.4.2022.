@@ -48,10 +48,10 @@ create table proizvod(
 );
 
 
-alter table narudzba add foreign key (kupac) references kupac(sifra);
-alter table narudzba add foreign key (proizvod) references proizvod(sifra);
-
-alter table kosarica add foreign key (proizvod) references proizvod(sifra);
+alter table proizvod add foreign key (kategorija) references kategorija(id);
+alter table narudzba add foreign key (kupac) references kupac(id);
+alter table kosarica add foreign key (narudzba) references naruzdba(id);
+alter table kosarica add foreign key (proizvod) references proizvod(id);
 
 insert into operater(email,lozinka,ime,prezime,uloga) values
 ('khegedus1@gmail.com','$2a$12$gcFbIND0389tUVhTMGkZYem.9rsMa733t9J9e9bZcVvZiG3PEvSla','Kristijan','Hegedus','admin');
@@ -67,3 +67,4 @@ insert into proizvod (sifra,naziv,cijena,kategorija) values
 (null,'Splatoon',299.99,'FPS'),
 (null,'The Legend of Zelda: Skyward Sword',129.99,'Avantura'),
 (null,'Donkey Kong Country Tropical Freeze',111.99,'Avantura');
+
