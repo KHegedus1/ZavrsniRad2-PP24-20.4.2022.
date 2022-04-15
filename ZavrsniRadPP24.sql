@@ -46,7 +46,6 @@ create table proizvod(
 
 
 alter table narudzba add foreign key (kupac) references kupac(sifra);
-
 alter table kosarica add foreign key (narudzba) references narudzba(sifra);
 alter table kosarica add foreign key (proizvod) references proizvod(sifra);
 
@@ -64,4 +63,3 @@ insert into proizvod (sifra,naziv,cijena,kategorija) values
 (null,'Splatoon',299.99,'FPS'),
 (null,'The Legend of Zelda: Skyward Sword',129.99,'Avantura'),
 (null,'Donkey Kong Country Tropical Freeze',111.99,'Avantura');
-

@@ -73,7 +73,7 @@ class ProizvodController extends AutorizacijaController
             'poruka'=>'Promjenite podatke',
             'proizvod'=>$this->proizvod
         ]);
-
+         
     }
 
     public function dodajNovi()
@@ -97,7 +97,8 @@ class ProizvodController extends AutorizacijaController
         $this->pripremiPodatke();        
         
         if($this->kontrolaNaziv()
-        && $this->kontrolaCijena()){
+        && $this->kontrolaCijena()  
+        && $this->kontrolaKategorija()){
             Proizvod::update((array)$this->proizvod);
             header('location:' . App::config('url') . 'proizvod/index');
         }else{
@@ -152,5 +153,18 @@ class ProizvodController extends AutorizacijaController
 
         return true;
     }
+
+    private function kontrolaKategorija()
+    {
+        if(strlen($this->proizvod->kategorija)===0){
+            $this->poruka='Molimo vas unesite naziv kategorije';
+            return false;
+        }
+        if(strlen($this->proizvod->kategorija)>40){
+            $this->poruka='Naziv  kategorije ne smije biti duži od 40 znakova';
+            return false;
+        }        
+        return true;
+    } 
     
 }
