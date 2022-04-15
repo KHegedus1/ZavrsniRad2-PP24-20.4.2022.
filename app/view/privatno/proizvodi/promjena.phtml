@@ -8,7 +8,7 @@
 
     <label for="cijena">Cijena</label>
     <input type="text" name="cijena" id="cijena" value="<?= $proizvod->cijena ?>">
-    
+
     <label for="zanr">Kategorija</label>
     <input type="text" name="kategorija" id="kategorija" value="<?= $proizvod->kategorija ?>">
 
@@ -19,7 +19,7 @@
                 <a  class="alert button expanded" href="<?=App::config('url')?>proizvod/index">Odustani</a>
             </div>
             <div class="large-8 cell">
-                <input type="submit" class="success button expanded" value="Promjeni">
+                <input type="submit" class="success button expanded" value="Promjeni" id="potvrdi-dugme">
             </div>
     </div>
 

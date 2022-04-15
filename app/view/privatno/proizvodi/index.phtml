@@ -22,8 +22,8 @@
     <tbody>
         <?php foreach($proizvodi as $proizvod): ?>
             <tr>
-                <td><?=$proizvod->naziv?></td>
                 <td><img src="<?=App::config('url')?>public/img/proizvodi/<?=$proizvod->sifra . '.jpg'?>" class="proizvod-slika"></td>
+                <td><?=$proizvod->naziv?></td>
                 <td><?=$proizvod->cijena?></td>
                 <td><?=$proizvod->kategorija?></td>
                 <td>
@@ -37,7 +37,7 @@
                 </td>
                 <td>
                 <a href="<?=APP::config('url')?>proizvod/promjena/<?=$proizvod->sifra?>">
-                    <i title="Promjeni &quot;<?=$proizvod->naziv?>&quot;" 
+                    <i title="Promjeni" 
                         class="fas fa-2x fa-edit"></i>
                 </a>
                 <?php if($proizvod->kosarica==0): ?>
