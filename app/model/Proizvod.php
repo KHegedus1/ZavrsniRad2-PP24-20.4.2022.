@@ -59,12 +59,13 @@ class Proizvod
         update proizvod set 
             naziv=:naziv,
             cijena=:cijena,
-            kategorija=:kategorija,
+            kategorija=:kategorija
             where sifra=:sifra;
         
         ');
         $izraz->execute($parametri);
     }
+    
     public static function delete($sifra)
     {
         $veza = DB::getInstanca();
