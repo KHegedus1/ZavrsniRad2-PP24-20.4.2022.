@@ -7,7 +7,7 @@ class Narudzba
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.email, a.iznos, a.narudzba
+        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.email,a.narudzba
         from narudzba a inner join kupac b on
         a.kupac = b.sifra
         where a.sifra=:parametar;
@@ -21,7 +21,7 @@ class Narudzba
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.email, a.iznos, a.narudzba, 
+        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.email,a.narudzba, 
         from narudzba a inner join kupac b on
         a.kupac = b.sifra
         where kupac is true;
@@ -54,13 +54,12 @@ class Narudzba
 
         $izraz = $veza->prepare('
         
-        insert into narudzba (kupac, iznos, narudzba) values
-        (:kupac, :iznos, :narudzba)
+        insert into narudzba (kupac,narudzba) values
+        (:kupac,:narudzba)
         
         ');
         $izraz->execute([
             'kupac'=>$zadnjaSifra,
-            'iznos'=>$parametri['iznos'],
             'narudzba'=>$parametri['narudzba'],
         ]);
 
@@ -106,14 +105,12 @@ class Narudzba
         $izraz = $veza->prepare('
         
         update narudzba set
-        iznos=:iznos,
         narudzba=:narudzba,
         where sifra=:sifra
         
         ');
         $izraz->execute([
             'sifra'=>$parametri['sifra'],
-            'iznos'=>$parametri['iznos'],
             'narudzba'=>$parametri['narudzba']
         ]);
 
