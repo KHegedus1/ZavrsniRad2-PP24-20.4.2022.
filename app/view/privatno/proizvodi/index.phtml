@@ -7,8 +7,7 @@
     </div>
     <div class="cell large-6" style="text-align: right;">
         <a href="<?=APP::config('url')?>proizvod/novi">
-            <i style="color: green;" title="Dodaj novi proizvod" 
-                class="fas fa-2x fa-cart-plus"></i>
+            <h1 id="plus" title="Dodaj novi proizvod">+</h1>
         </a>
     </div>
 </div>
@@ -38,9 +37,9 @@
                 <td>
                 <a href="<?=APP::config('url')?>narudzbe/index/<?=$proizvod->sifra?>">
                     <i title="Kupi" 
-                        class="fas fa-shopping-cart"></i>
+                        class="fas fa-2x fa-cart-plus"></i>
                 </a>
-                <a href="<?=APP::config('url')?>proizvod/promjena/<?=$proizvod->sifra?>">
+                <a href="<?=APP::config('url')?>proizvod/promjena/<?=$proizvod->sifra?>" style="margin-left: 20px;">
                     <i title="Promjeni" 
                         class="fas fa-2x fa-edit"></i>
                 </a>
