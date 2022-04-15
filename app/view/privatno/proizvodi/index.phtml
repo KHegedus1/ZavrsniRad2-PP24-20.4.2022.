@@ -22,8 +22,8 @@
     <tbody>
         <?php foreach($proizvodi as $proizvod): ?>
             <tr>
-                <td><img src="<?=App::config('url')?>public/img/proizvodi/<?=$proizvod->sifra . '.jpg'?>" class="proizvod-slika"></td>
                 <td><?=$proizvod->naziv?></td>
+                <td><img src="<?=App::config('url')?>public/img/proizvodi/<?=$proizvod->sifra . '.jpg'?>" class="proizvod-slika"></td>
                 <td><?=$proizvod->cijena?></td>
                 <td><?=$proizvod->kategorija?></td>
                 <td>
