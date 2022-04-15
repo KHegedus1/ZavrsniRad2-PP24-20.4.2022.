@@ -36,6 +36,10 @@
                     <?php endif; ?>
                 </td>
                 <td>
+                <a href="<?=APP::config('url')?>narudzbe/index/<?=$proizvod->sifra?>">
+                    <i title="Kupi" 
+                        class="fas fa-shopping-cart"></i>
+                </a>
                 <a href="<?=APP::config('url')?>proizvod/promjena/<?=$proizvod->sifra?>">
                     <i title="Promjeni" 
                         class="fas fa-2x fa-edit"></i>
