@@ -1,0 +1,18 @@
+<div class="login-box">
+<form action="<?= App::config('url') ?>registracija/noviKupac" method="POST">
+  <div class="row collapse expanded">
+    <div class="small-12 medium-6 column small-order-2 medium-order-1">
+      <div class="login-box-form-section">
+        <h1 class="login-box-title">Registracija</h1>
+        <input class="login-box-input" input type="text" name="ime" id="ime" value="<?= $kupac->ime ?>"placeholder="Ime" />
+        <input class="login-box-input" input type="text" name="prezime" id="prezime" value="<?= $kupac->prezime ?>"placeholder="Prezime" />
+        <input class="login-box-input" input type="text" name="adresa" id="adresa" value="<?= $kupac->adresa ?>"placeholder="Adresa" />
+        <input class="login-box-input" input type="email" name="email"id="E-mail" value="<?= $kupac->email ?>"placeholder="E-mail" />
+        <input class="login-box-submit-button" type="submit" name="signup_submit"  value="Registriraj se" />
+        <div class="col" >
+        <a href="<?=App::config('url')?>login/autoriziraj" class="btn btn-light btn-block">Imate račun? Logiraj se</a>
+        </div>
+      </div>
+      </div>
+  </div>
+</div>
