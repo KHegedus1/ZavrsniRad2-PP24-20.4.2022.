@@ -1,43 +1,53 @@
 <?php
 
-class NarudzbaController extends AutorizacijaController
+class NarudzbaController extends AuthorizedController
 {
-
     private $viewDir = 'privatno' . DIRECTORY_SEPARATOR . 'narudzbe' . DIRECTORY_SEPARATOR;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->nf = new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
+        $this->nf->setPattern('#,##0.00');
+    }
 
     public function index()
     {
-        $this->view->render($this->viewDir . 'index');
+        $narudzba=Narudzba::getNarudzbaKosarica($_SESSION['autoriziran']->sifra);
+        foreach($narudzba as $proizvod){
+            $proizvod->priceFormatted=$this->nf->format($proizvod->cijena);
+        }
+
+        $this->view->render($this->viewDir . 'index', [
+            'narudzba' =>$narudzba,
+            'javascript'=>'<script src="'. App::config('url'). 'public/js/removeFromCart.js"></script> '
+        ]);
     }
 
-    public function test($sto)
+    public function dodajuKosaricu($proizvodSifra, $kolicina=1)
     {
-        switch($sto){
-            case 'dodaj':
-                Narudzba::create([
-                'ime'=>'Kristijan',
-                'prezime'=>'Hegeduš',
-                'ulica'=>'Reisnerova',
-                'kucniBroj'=>52,
-                'grad'=>'Osijek',
-                'email'=>'khegedus1@gmail.com'
-                ]);
-                break;
-               
-             case 'promijeni':
-                Narudzba::update([
-                'sifra'=>6,
-                'ime'=>'Druga',
-                'prezime'=>'Osoba',
-                'ulica'=>'Rreisnerova',
-                'kucniBroj'=>53,
-                'grad'=>'Osijek',
-                'email'=>'khegedus2@gmail.com'
-                ]);
-                break;
-
-            case 'obrisi':
-                Narudzba::delete(6);
+        $kupacSifra = $_SESSION['autoriziran']->sifra;
+        if (Narudzba::getNarudzbaKosarica($kupacSifra) == null) {
+            Narudzba::create($kupacSifra);
         }
+        $narudzbaSifra = Narudzba::getNarudzba($kupacSifra)->sifra;
+
+
+
+        echo Narudzba::dodajuKosaricu($proizvodSifra, $narudzbaSifra, $kolicina) ? 'OK' : 'Error';
+    }
+
+    public function obrisiizKosarice($proizvodSifra)
+    {
+        $kupacSifra = $_SESSION['autoriziran']->sifra;
+        $narudzbaSifra = Narudzba::getNarudzba($kupacSifra)->sifra;
+
+        echo Narudzba::obrisiizKosarice($proizvodSifra, $narudzbaSifra) ? 'OK' : 'Error';
+
+    }
+
+    public function brojjedinstvenihproizvoda()
+    {
+        echo Narudzba::brojjedinstvenihproizvoda($_SESSION['autoriziran']->sifra);
     }
 }
