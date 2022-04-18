@@ -4,7 +4,7 @@ class Kupac
 {
     public static function readOne($sifra)
     {
-        $connection = DB::getInstance();
+        $connection = DB::getInstanca();
         $query = $connection->prepare('
         
                 select *
@@ -18,7 +18,7 @@ class Kupac
 
     public static function read()
     {
-        $connection = DB::getInstance();
+        $connection = DB::getInstanca();
         $query = $connection->prepare('
         
                 select *
@@ -31,7 +31,7 @@ class Kupac
 
     public static function insert($paramaters)
     {
-        $connection = DB::getInstance();
+        $connection = DB::getInstanca();
         $query = $connection->prepare('
         
                 insert into kupac (ime, prezime, ulica, kucniBroj, grad, email)
@@ -50,7 +50,7 @@ class Kupac
     
     public static function update($paramaters)
     {
-        $connection = DB::getInstance();
+        $connection = DB::getInstanca();
         $query = $connection->prepare('
         
                 
