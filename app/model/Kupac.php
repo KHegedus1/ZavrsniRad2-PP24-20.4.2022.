@@ -35,12 +35,12 @@ class Kupac
         $query = $connection->prepare('
         
                 insert into kupac (ime, prezime, ulica, kucniBroj, grad, email)
-                values (:ime, :prezime, :ulica, :kucniBroj, now())
+                values (:ime, :prezime, :ulica, :kucniBroj,grad,email now())
         
         ');
         $query->execute([
             'ime'=>$paramaters['ime'],
-            'prezime'=>$paramaters['prezime'],
+            'prezime'=>$paramaters['prezime'],  
             'ulica'=>$paramaters['ulica'],
             'kucniBroj'=>$paramaters['kucniBroj'],
             'grad'=>$paramaters['grad'],
