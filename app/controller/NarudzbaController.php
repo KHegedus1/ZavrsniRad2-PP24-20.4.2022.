@@ -1,6 +1,6 @@
 <?php
 
-class NarudzbaController extends AuthorizedController
+class NarudzbaController extends AutorizacijaController
 {
     private $viewDir = 'privatno' . DIRECTORY_SEPARATOR . 'narudzbe' . DIRECTORY_SEPARATOR;
 
@@ -51,3 +51,4 @@ class NarudzbaController extends AuthorizedController
         echo Narudzba::brojjedinstvenihproizvoda($_SESSION['autoriziran']->sifra);
     }
 }
+

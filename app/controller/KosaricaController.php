@@ -1,6 +1,6 @@
  <?php
 
-class OrderController extends AuthorizedController
+class KosaricaController extends AutorizacijaController
 {
     private $viewDir = 'privatno' . DIRECTORY_SEPARATOR . 'kosarica' . DIRECTORY_SEPARATOR;
     private $nf;
