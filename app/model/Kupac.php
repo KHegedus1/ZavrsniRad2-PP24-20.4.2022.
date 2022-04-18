@@ -35,7 +35,7 @@ class Kupac
         $query = $connection->prepare('
         
                 insert into kupac (ime, prezime, ulica, kucniBroj, grad, email)
-                values (:ime, :prezime, :ulica, :kucniBroj,grad,email now())
+                values (:ime, :prezime, :ulica, :kucniBroj, :grad, :email)
         
         ');
         $query->execute([
