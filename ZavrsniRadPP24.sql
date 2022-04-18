@@ -24,7 +24,8 @@ create table kupac(
 
 create table narudzba(
     sifra           int not null primary key auto_increment,
-    kupac           int not null
+    kupac           int not null,
+    isporuceno      boolean not null
 );
 
 create table kosarica (
