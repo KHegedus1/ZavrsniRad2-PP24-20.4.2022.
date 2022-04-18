@@ -19,7 +19,7 @@ create table kupac(
     ulica           varchar(50) not null,
     kucniBroj       varchar(5) not null,
     grad            varchar(50) not null,       
-    email           varchar(50),
+    email           varchar(50)
 );
 
 create table narudzba(

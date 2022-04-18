@@ -16,7 +16,7 @@
           'server'=>'localhost',
           'baza'=>'furije_webshop',
           'korisnik'=>'furije_webshop',
-          'lozinka'=>'+W@L[+NBLMKY'
+          'lozinka'=>'%bZ)Aq]Qznl0'
       ];
   }
   
