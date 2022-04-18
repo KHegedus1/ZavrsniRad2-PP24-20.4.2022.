@@ -2,133 +2,137 @@
 
 class Narudzba
 {
-    public static function readOne($kljuc)
+    public static function getNarudzba($sifra)
     {
-        $veza = DB::getInstanca();
-        $izraz = $veza->prepare('
-        
-        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.email,a.narudzba
-        from narudzba a inner join kupac b on
-        a.kupac = b.sifra
-        where a.sifra=:parametar;
-        
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+            select sifra, kupac
+            from narudzba 
+            where isporuceno = 0 and kupac=:kupacSifra 
+            
         ');
-        $izraz->execute(['parametar'=>$kljuc]);
-        return $izraz->fetch();
+        $query->execute([
+            'kupacSifra' => $sifra
+        ]);
+
+        return $query->fetch();
     }
-    public static function read()
+    public static function create($sifra)
     {
-        $veza = DB::getInstanca();
-        $izraz = $veza->prepare('
-        
-        select a.sifra, b.ime, b.prezime, b.ulica, b.kucniBroj, b.grad, b.email,a.narudzba, 
-        from narudzba a inner join kupac b on
-        a.kupac = b.sifra
-        where kupac is true;
-        order by 3,2;
-        
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+            insert into narudzba (kupac, isporuceno) values
+            (:kupacSifra, false)
+            
         ');
-        $izraz->execute();
-        return $izraz->fetchAll();
+        $query->execute([
+            'kupacSifra' => $sifra
+        ]);
+
     }
-    public static function create($parametri)
+
+    public static function dodajuKosaricu($proizvod, $narudzbaSifra, $kolicina)
     {
-        $veza = DB::getInstanca();
-        $veza->beginTransaction();
-        $izraz = $veza->prepare('
-        
-        insert into kupac (ime, prezime, ulica, kucniBroj, grad,email) values
-        (:ime, :prezime, :ulica, :kucniBroj, :grad, :email)
-        
+        $connection = DB::getInstanca();
+
+        $query = $connection->prepare('
+            select a.kolicina
+            from kosarica as a
+            inner join narudzba as b on a.narudzba = b.sifra
+            where a.proizvod = :proizvod and b.sifra = :narudzbaSifra
+            
         ');
-        $izraz->execute([
-            'ime'=>$parametri['ime'],
-            'prezime'=>$parametri['prezime'],
-            'ulica'=>$parametri['ulica'],
-            'kucniBroj'=>$parametri['kucniBroj'],
-            'grad'=>$parametri['grad'],
-            'email'=>$parametri['email']
+        $query->execute([
+            'proizvod' => $proizvod,
+            'narudzbaSifra' => $narudzbaSifra
         ]);
 
-        $zadnjaSifra = $veza->lastInsertId();
+        $postojiliuKosarici = $query->fetchColumn();
 
-        $izraz = $veza->prepare('
-        
-        insert into narudzba (kupac,narudzba) values
-        (:kupac,:narudzba)
-        
-        ');
-        $izraz->execute([
-            'kupac'=>$zadnjaSifra,
-            'narudzba'=>$parametri['narudzba'],
-        ]);
-
-        $veza->commit();
+        if($postojiliuKosarici == 0){
+            $query = $connection->prepare('
+            insert into kosarica (narudzba, proizvod, cijena, kolicina) values
+            (:narudzbaSifra, :proizvod, (select cijena from proizvod where sifra = :proizvod), 1 )
+            
+            ');
+            return $query->execute([
+                'proizvod' => $proizvod,
+                'narudzbaSifra' => $narudzbaSifra
+            ]);
+        }else{
+            $query = $connection->prepare('
+            update kosarica a
+            inner join narudzba as b on a.narudzba=b.sifra
+            set a.kolicina = a.kolicina+1
+            where proizvod= :proizvod and b.sifra= :narudzbaSifra
+            
+            ');
+            return $query->execute([
+                'proizvod' => $proizvod,
+                'narudzbaSifra' => $narudzbaSifra
+            ]);
+        }
     }
-    public static function update($parametri)
+    public static function obrisiizKosarice($proizvod, $narudzbaSifra)
     {
-        $veza = DB::getInstanca();
-        $veza->beginTransaction();
-        $izraz = $veza->prepare('
-        
-        select kupac from narudzba where sifra=:sifra
-        
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+            delete from kosarica 
+            where proizvod = :proizvod and narudzba = :narudzbaSifra
+            
         ');
-        $izraz->execute([
-            'sifra'=>$parametri['sifra']
+        return $query->execute([
+            'proizvod' => $proizvod,
+            'narudzbaSifra' => $narudzbaSifra
         ]);
-
-        $sifraKupac = $izraz->fetchColumn();
-
-        $izraz = $veza->prepare('
-        
-        update kupac set
-        ime=:ime,
-        prezime=:prezime,
-        ulica=:ulica,
-        kucniBroj=:kucniBroj,
-        grad=:grad,
-        email=:email,
-        where sifra=:sifra
-        
-        ');
-        $izraz->execute([
-            'sifra'=>$sifraKupac,
-            'ime'=>$parametri['ime'],
-            'prezime'=>$parametri['prezime'],
-            'ulica'=>$parametri['ulica'],
-            'kucniBroj'=>$parametri['kucniBroj'],
-            'grad'=>$parametri['grad'],
-            'email'=>$parametri['email']
-        ]);
-
-        $izraz = $veza->prepare('
-        
-        update narudzba set
-        narudzba=:narudzba,
-        where sifra=:sifra
-        
-        ');
-        $izraz->execute([
-            'sifra'=>$parametri['sifra'],
-            'narudzba'=>$parametri['narudzba']
-        ]);
-
-        $veza->commit();
     }
-    public static function delete($sifra)
+    public static function getNarudzbaKosarica($sifra)
     {
-        $veza = DB::getInstanca();
-        $veza->beginTransaction();
-        $izraz = $veza->prepare('
-        
-        delete from narudzba where sifra=:sifra
-        
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+            select a.sifra as narudzbSifra,c.sifra as sifra, c.name,b.cijena, b.kolicina
+            from narudzba a
+            inner join kosarica b on a.sifra=b.narudzba
+            inner join proizvod c on b.proizvod=c.sifra
+            where a.isporuceno = 0 and a.kupac = :kupacSifra
+            
         ');
-        $izraz->execute([
-            'sifra'=>$sifra
+        $query->execute([
+            'kupacSifra' => $sifra
         ]);
 
-        $veza->commit();
+        return $query->fetchAll();
+    }
+    public static function brojjedinstvenihproizvoda($sifra)
+    {
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+            select count(*) as number
+            from narudzba a
+            inner join kosarica b on a.sifra=b.narudzba
+            where a.isporuceno = 0 and a.kupac = :kupacSifra
+            
+        ');
+        $query->execute([
+            'kupacSifra' => $sifra
+        ]);
+
+        return $query->fetchColumn();
+    }
+    public static function zbrajanje($sifra)
+    {
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+            select sum(b.cijena*b.kolicina) as number
+            from narudzba a
+            inner join kosarica b on a.sifra=b.narudzba
+            where a.isporuceno = 0 and a.kupac = :kupacSifra
+            
+        ');
+        $query->execute([
+            'kupacSifra' => $sifra
+        ]);
+
+        return $query->fetchColumn();
     }
 }
