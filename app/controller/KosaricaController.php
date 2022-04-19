@@ -25,7 +25,7 @@ class KosaricaController extends AutorizacijaController
         $this->view->render($this->viewDir . 'kosarica',[
             'type'=>'active',
             'search'=>$search,
-            'orders'=>$orders,
+            'narudzbe'=>$narudzbe,
             'ukupnoNarudzbi'=>$ukupnoNarudzbi,
         ]);
         return;

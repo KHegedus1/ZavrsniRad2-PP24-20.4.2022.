@@ -90,7 +90,7 @@ class Narudzba
     {
         $connection = DB::getInstanca();
         $query = $connection->prepare('
-            select a.sifra as kosaricaSifra,c.sifra as sifra, c.name,b.cijena, b.kolicina
+            select a.sifra as kosaricaSifra,c.sifra as sifra, c.ime,b.cijena, b.kolicina
             from narudzba a
             inner join kosarica b on a.sifra=b.narudzba
             inner join proizvod c on b.proizvod=c.sifra

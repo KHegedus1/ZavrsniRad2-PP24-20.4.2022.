@@ -6,6 +6,9 @@
         <h1 style="font-size: 1.5rem;">Proizvodi</h1>
     </div>
     <div class="cell large-6" style="text-align: right;">
+        <a href="<?=APP::config('url')?>narudzba/index"
+        src="<public/img/kosarica.jpg">
+    <div class="cell large-6" style="text-align: right;">
         <a href="<?=APP::config('url')?>proizvod/novi">
             <h1 id="plus" title="Dodaj novi proizvod">+</h1>
         </a>
@@ -35,7 +38,7 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                <a href="<?=APP::config('url')?>kupac/dodajuKosaricu/<?=$proizvod->sifra?>">
+                <a href="<?=APP::config('url')?>getNarudzba/<?=$proizvod->sifra?>">
                     <i title="Kupi" 
                         class="fas fa-2x fa-cart-plus"></i>
                 </a>
