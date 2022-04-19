@@ -103,21 +103,6 @@ class Narudzba
 
         return $query->fetchAll();
     }
-    public static function brojjedinstvenihproizvoda($sifra)
-    {
-        $connection = DB::getInstanca();
-        $query = $connection->prepare('
-            select count(*) as number
-            from narudzba a
-            inner join kosarica b on a.sifra=b.narudzba
-            where a.isporuceno = 0 and a.kupac = :kupacSifra
-            
-        ');
-        $query->execute([
-            'kupacSifra' => $sifra
-        ]);
-
-        return $query->fetchColumn();
     }
     public static function zbrajanje($sifra)
     {

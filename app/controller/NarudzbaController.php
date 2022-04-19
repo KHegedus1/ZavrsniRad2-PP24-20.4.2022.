@@ -20,7 +20,6 @@ class NarudzbaController extends AutorizacijaController
 
         $this->view->render($this->viewDir . 'index', [
             'narudzba' =>$narudzba,
-            'javascript'=>'<script src="'. App::config('url'). 'public/js/removeFromCart.js"></script> '
         ]);
     }
 
@@ -34,7 +33,7 @@ class NarudzbaController extends AutorizacijaController
 
 
 
-        echo Narudzba::dodajuKosaricu($proizvodSifra, $narudzbaSifra, $kolicina) ? 'OK' : 'Error';
+        echo Narudzba::dodajuKosaricu($proizvodSifra, $narudzbaSifra, $kolicina);
     }
 
     public function obrisiizKosarice($proizvodSifra)
@@ -42,13 +41,8 @@ class NarudzbaController extends AutorizacijaController
         $kupacSifra = $_SESSION['autoriziran']->sifra;
         $narudzbaSifra = Narudzba::getNarudzba($kupacSifra)->sifra;
 
-        echo Narudzba::obrisiizKosarice($proizvodSifra, $narudzbaSifra) ? 'OK' : 'Error';
+        echo Narudzba::obrisiizKosarice($proizvodSifra, $narudzbaSifra);
 
-    }
-
-    public function brojjedinstvenihproizvoda()
-    {
-        echo Narudzba::brojjedinstvenihproizvoda($_SESSION['autoriziran']->sifra);
     }
 }
 
