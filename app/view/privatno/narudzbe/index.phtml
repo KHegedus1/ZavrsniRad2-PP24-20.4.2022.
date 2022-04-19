@@ -1,8 +1,8 @@
  <div class="shoppingorder">
     <?php if (empty($narudzba)) : ?>
         <div class="no-cart text-center">
-            <h2>Trenutno nemate proizvoda u košarici!</h2>
-            <h5>Pogledajte cijelu ponudu <a href="<?= App::config('url'); ?>proizvod/">ovdje</a> ili unesite pojam u <label class="no-cart-search" for="search">tražilicu!</label></h5>
+            <h2>Niste odabrali još nijedan proizvod.</h2>
+            <h5>Naš katalog možete pregledati <a href="<?= App::config('url'); ?>proizvod/">ovdje</a><label class="no-cart-search" for="search"></label></h5>
         </div>
     <?php else : ?>
         <h2>Vaša košarica.</h2>
