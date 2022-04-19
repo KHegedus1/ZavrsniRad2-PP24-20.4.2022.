@@ -17,4 +17,5 @@ class KosaricaController extends AutorizacijaController
         $data = (array)Kosarica::readNarudzbaDetalji($sifra);
         echo json_encode($data);
     }
+}
     
