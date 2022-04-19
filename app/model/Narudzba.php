@@ -103,7 +103,6 @@ class Narudzba
 
         return $query->fetchAll();
     }
-    }
     public static function zbrajanje($sifra)
     {
         $connection = DB::getInstanca();
