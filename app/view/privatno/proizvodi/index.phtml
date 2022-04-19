@@ -1,3 +1,6 @@
+<a href="<?=APP::config('url')?>narudzba/index">
+            <h4 id="plus"  style="bold" title="Kosarica">Vaša košarica</h4>
+</a>
 <form action="<?=App::config('url')?>proizvod/index" method="get" class="forma-unos" style="margin-bottom: 25px;">
     <input type="text" name="uvjet" placeholder="Unesite dio naziva igre" style="margin-top: 10px; border-radius: 50px;">
 </form>
@@ -5,9 +8,6 @@
     <div class="cell large-6">
         <h1 style="font-size: 1.5rem;">Proizvodi</h1>
     </div>
-    <div class="cell large-6" style="text-align: right;">
-        <a href="<?=APP::config('url')?>narudzba/index"
-        src="<public/img/kosarica.jpg">
     <div class="cell large-6" style="text-align: right;">
         <a href="<?=APP::config('url')?>proizvod/novi">
             <h1 id="plus" title="Dodaj novi proizvod">+</h1>
@@ -38,7 +38,7 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                <a href="<?=APP::config('url')?>getNarudzba/<?=$proizvod->sifra?>">
+                <a href="<?=APP::config('url')?>kupac/dodajuKosaricu/<?=$proizvod->sifra?>">
                     <i title="Kupi" 
                         class="fas fa-2x fa-cart-plus"></i>
                 </a>
