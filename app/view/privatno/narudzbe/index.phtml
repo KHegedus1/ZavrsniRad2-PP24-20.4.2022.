@@ -1,11 +1,10 @@
- <div class="shoppingorder">
-    <?php if (empty($narudzba)) : ?>
+    <?php if (($narudzba)===0) : ?>
         <div class="no-cart text-center">
             <h2>Niste odabrali još nijedan proizvod.</h2>
             <h5>Naš katalog možete pregledati <a style= " text-decoration: underline " href="<?= App::config('url'); ?>proizvod/">ovdje</a><label class="no-cart-search" for="search"></label></h5>
         </div>
     <?php else : ?>
-        <h2>Vaša košarica.</h2>
+        <h4 style="color:CornFlowerBlue">Igre koje ste izabrali:</h4>
         <hr>
         <table class="hover">
             <thead>
@@ -18,53 +17,22 @@
             <tbody>
                 <?php foreach ($narudzba as $proizvod) : ?>
                     <tr sifra="proizvod<?= $proizvod->sifra ?>">
-                        <td class="order-cart-item text-left" data-open="proizvodmodal<?= $proizvod->sifra ?>" title="Klik za detalje."><?= $proizvod->ime ?></td>
                         <td><?= $proizvod->priceFormatted ?> kn</td>
                         <td><?= $proizvod->kolicina ?></td>
                         <td><?= number_format($proizvod->price * $proizvod->kolicina, 2,',','.') ?> kn</td>
-                        <td>
-                            <button class="obrisiizKosarice" data-sifra="<?= $proizvod->sifra ?>"><i title="Obriši &quot;<?= $proizvod->ime ?>&quot;." class="fas fa-2x fa-trash"></i></button>
-                        </td>
                     </tr>
-                    <div class="small reveal" sifra="proizvodmodal<?= $proizvod->sifra ?>" data-reveal>
-                        <h1 class="modal-proizvod-ime"><?= $proizvod->ime ?></h1>
-                        <div class="grsifra-x grsifra-padding-x modal-proizvod-section">
-                            <div class="large-6 modal-proizvod-image">
-                                <img src="<?= App::config('url')?>public/images/proizvodi/<?= $proizvod->sifra?>.jpg" alt="<?= $proizvod->ime ?>">
-                            </div>
                         </div>
                         <div class="grsifra-x grsifra-padding-x text-center">
                             <div class="large-6 large-offset-1">
                                 <h3><?= $proizvod->priceFormatted ?> kn</h3>
-                            </div>
-                            <div class="large-3">
-
-                                    <i class="fas fa-3x fa-cart-plus add-to-cart addToCart" data-sifra="<?= $proizvod->sifra ?>" data-open="modal<?=$proizvod->sifra?>" title="Dodaj &quot;<?= $proizvod->ime ?>&quot; u košaricu"></i>
-                                    <div class="small reveal add-modal" sifra="modal<?=$proizvod->sifra?>" data-reveal>
-                                        <div class="grsifra-x grsifra-padding-x text-center">
-                                            <h4 class="text-center">"<?=$proizvod->ime?>" uspješno dodan u Vašu košaricu!</h4>
-                                            <br>
-                                            <br>
-                                            <div class="large-6">
-                                                <button data-close class="button warning">Zatvori</button>
-                                            </div>
-                                            <div class="large-6">
-                                                <a href="<?= App::config('url') ?>narudzba/index" data-close class="button expanded">Vaša košarica</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <i class="far fa-3x fa-heart add-to-wishlist" data-sifra="<?= $proizvod->sifra ?>" title="Dodaj &quot;<?= $proizvod->ime ?>&quot; u listu želja."></i>
-                            </div>
+                            </div>          
                         </div>  
-                        <button class="close-button" data-close aria-label="Close modal" type="button">
-                            <span aria-hsifraden="true">&times;</span>
-                        </button>
                     </div>
                 <?php endforeach; ?>
             </tbody>
         </table>
         <hr>
-        <h1 sifra="sumTotal">Sveukupno: <?= number_format(Narudzba::zbrajanje($_SESSION['autoriziran']->sifra), 2,',','.') ?> kn</h1>
+        <h2 style="color:CornFlowerBlue" sifra="sumTotal">Iznos računa: <?= number_format(Narudzba::zbrajanje($_SESSION['autoriziran']->sifra), 2,',','.') ?> kn</h2>
         <br>
         <button class="button secondary">Završi kupovinu!</button>
     <?php endif; ?>
