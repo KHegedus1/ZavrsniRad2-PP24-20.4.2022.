@@ -30,7 +30,10 @@ class NarudzbaController extends AutorizacijaController
             Narudzba::create($kupacSifra);
         }
         $narudzbaSifra = Narudzba::getNarudzba($kupacSifra)->sifra;
-
+        
+        $this->view->render($this->viewDir . 'index', [
+            'narudzba' =>$narudzba,
+        ]);
 
 
         echo Narudzba::dodajuKosaricu($proizvodSifra, $narudzbaSifra, $kolicina);
