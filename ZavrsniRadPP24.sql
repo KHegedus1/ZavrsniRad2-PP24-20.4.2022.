@@ -32,6 +32,7 @@ create table kosarica (
     sifra       int not null primary key auto_increment,
     narudzba    int not null,
     proizvod    int not null,
+    cijena      decimal(18,2) not null,
     kolicina    int not null
 
 );
