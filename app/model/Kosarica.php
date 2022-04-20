@@ -51,7 +51,7 @@ class Kosarica
         $connection = DB::getInstanca();
         $query = $connection->prepare('
         
-        select c.ime,c.sifra as proizvodSIfra, c.cijena as proizvodCijena, a.cijena, a.kolicina
+        select c.ime,c.sifra as proizvodSifra, c.cijena as proizvodCijena, a.cijena, a.kolicina
         from kosarica a
         inner join narudzba b on a.narudzba=b.sifra
         inner join proizvod c on a.proizvod=c.sifra
@@ -62,5 +62,27 @@ class Kosarica
             'sifra'=>$sifra
         ]);
         return $query->fetchAll();
+    }
+    public static function readOne($sifra)
+    {
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('
+        
+            select * from kosarica where sifra=:parametar;
+        
+        '); 
+        $izraz->execute(['parametar'=>$sifra]);
+        $narudzba= $izraz->fetch();
+        $izraz = $veza->prepare('
+        
+            select b.sifra, b.kategorija, b.naziv, b.cijena
+            from proizvod a
+            inner join kosarica b on a.kosarica =b.sifra 
+            where a.kosarica = :parametar;
+        
+        '); 
+        $izraz->execute(['parametar'=>$kosarica->sifra]);
+        $kosarica->proizvodi=$izraz->fetchAll();
+        return $kosarica;
     }
 }

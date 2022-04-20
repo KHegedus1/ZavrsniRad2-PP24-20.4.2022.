@@ -17,5 +17,16 @@ class KosaricaController extends AutorizacijaController
         $data = (array)Kosarica::readNarudzbaDetalji($sifra);
         echo json_encode($data);
     }
+
+public function index()
+{
+    $narudzba=Narudzba::getNarudzbaKosarica($_SESSION['autoriziran']->sifra);
+    foreach($narudzba as $proizvod){
+        $proizvod->priceFormatted=$this->nf->format($proizvod->cijena);
+    }
+
+    $this->view->render($this->viewDir . 'index', [
+        'kosarica' =>$kosarica,
+    ]);
 }
-    
+}    

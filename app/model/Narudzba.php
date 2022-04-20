@@ -119,4 +119,39 @@ class Narudzba
 
         return $query->fetchColumn();
     }
+    public static function zavrsniNarudzbu($kupacSifra)
+    {
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+        update narudzba
+        set isporuceno = 1
+        where isporuceno = 0 and kupac = :kupacSifra
+            
+        ');
+        $query->execute([
+            'kupac' => (int)$kupacSifra
+        ]);
+    }
+    public static function readOne($sifra)
+    {
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('
+        
+            select * from narudzba where sifra=:parametar;
+        
+        '); 
+        $izraz->execute(['parametar'=>$sifra]);
+        $narudzba= $izraz->fetch();
+        $izraz = $veza->prepare('
+        
+            select b.sifra, b.kategorija, b.naziv, b.cijena
+            from proizvod a
+            inner join narudzba b on a.narudzba =b.sifra 
+            where a.narudzba = :parametar;
+        
+        '); 
+        $izraz->execute(['parametar'=>$narudzba->sifra]);
+        $narudzba->proizvodi=$izraz->fetchAll();
+        return $narudzba;
+    }
 }
