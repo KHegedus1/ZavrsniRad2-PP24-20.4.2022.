@@ -29,4 +29,9 @@ public function index()
         'kosarica' =>$kosarica,
     ]);
 }
+public function naruci($sifra)
+{
+    $kupacSifra = $_SESSION['autoriziran']->sifra;
+}
+
 }    

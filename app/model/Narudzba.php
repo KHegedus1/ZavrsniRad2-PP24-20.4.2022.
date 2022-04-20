@@ -154,4 +154,12 @@ class Narudzba
         $narudzba->proizvodi=$izraz->fetchAll();
         return $narudzba;
     }
+    public static function naruci($sifra)
+    {
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+            insert into narudzba (ime,prezime,email,grad,kucniBroj,ulica) values
+            (:ime,:prezime,:email:grad,:kucniBroj,:ulica)
+            ');
+    }
 }

@@ -85,4 +85,12 @@ class Kosarica
         $kosarica->proizvodi=$izraz->fetchAll();
         return $kosarica;
     }
+    public function naruci($sifra)
+    {
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+            insert into narudzba (ime,prezime,email,grad,kucniBroj,ulica) values
+            (:ime,:prezime,:email:grad,:kucniBroj,:ulica)
+            ');
+    }
 }

@@ -8,34 +8,34 @@
                 <label for="firstname">Ime</label>
                 <input type="text" name="firstname" id="firstname" aria-describedby="messageFirstname" value="<?= $customer->firstname ?>">
                 <p class="help-text red-message" id="messageFirstname">
-                    <?= $poruka->firstname ?>
+                    <?= $poruka->ime ?>
                 </p>
 
                 <label for="lastname">Prezime</label>
                 <input type="text" name="lastname" id="lastname" aria-describedby="messageLastname" value="<?= $customer->lastname ?>">
                 <p class="help-text red-message" id="messageLastname">
-                    <?= $poruka->lastname ?>
+                    <?= $poruka->prezime ?>
                 </p>
 
                 <label for="email">email</label>
-                <input type="email" name="email" id="email" aria-describedby="messageEmail" placeholder="vas.email@gmail.com" value="<?= $customer->email ?>">
+                <input type="email" name="email" id="email" aria-describedby="messageEmail"  value="<?= $customer->email ?>">
                 <p class="help-text red-message" id="messageEmail">
                     <?= $poruka->email ?>
                 </p>
 
                 <label for="street">kucniBroj</label>
-                <input type="text" name="street" id="street" aria-describedby="messageStreet" placeholder="Ulica Republike, 3a" value="<?= $customer->street ?>">
+                <input type="text" name="street" id="street" aria-describedby="messageStreet"  value="<?= $customer->street ?>">
                 <p class="help-text red-message" id="messageStreet">
                     <?= $poruka->kucniBroj ?>
                 </p>
                 <label for="street">ulica</label>
-                <input type="text" name="street" id="street" aria-describedby="messageStreet" placeholder="Ulica Republike, 3a" value="<?= $customer->street ?>">
+                <input type="text" name="street" id="street" aria-describedby="messageStreet" value="<?= $customer->street ?>">
                 <p class="help-text red-message" id="messageStreet">
                     <?= $poruka->ulica ?>
                 </p>
 
                 <label for="city">Grad</label>
-                <input type="text" name="city" id="city" aria-describedby="messageCity" placeholder="Osijek" value="<?= $customer->city ?>">
+                <input type="text" name="city" id="city" aria-describedby="messageCity"  value="<?= $customer->city ?>">
                 <p class="help-text red-message" id="messageCity">
                     <?= $poruka->grad ?>
                 </p>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="text-center">
-        <button  class="button"><a style="color:Yellow" href="<?=App::config('url')?>kosarica/index"> Prihvaćam</a></button>
+        <button  class="button"><a style="color:Yellow" href="<?=App::config('url')?>narudzba/akcija"> Prihvaćam</a></button>
         </div>
     </form>
 </div>

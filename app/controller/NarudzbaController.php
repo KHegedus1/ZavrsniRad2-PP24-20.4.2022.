@@ -47,5 +47,23 @@ class NarudzbaController extends AutorizacijaController
         echo Narudzba::obrisiizKosarice($proizvodSifra, $narudzbaSifra);
 
     }
+    public function akcija()
+    {
+        $this->kupac = (object)$_POST;
+
+        {
+            $narudzba = Narudzba::getNarudzbaKosarica($_SESSION['autoriziran']->sifra);
+            foreach ($narudzba as $proizvod) {
+                $proizvod->priceFormatted = $this->nf->format($proizvod->cijena);
+            }
+
+            $this->view->render($this->viewDir . 'hvala', [
+                'narudzba' => $narudzba,
+            ]);
+            return;
+        }
+    }
+     
+
 }
 
