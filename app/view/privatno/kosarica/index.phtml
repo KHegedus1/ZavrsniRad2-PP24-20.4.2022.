@@ -1,43 +1,53 @@
-<div class="main-index">
-    <div class="grid-x">
-        <div class="cell large-6">
-            <h1 style="font-size: 1.5rem;">Narudžbe</h1>
+<h2 style="color:CornFlowerBlue" sifra="sumTotal">Iznos koji morate platiti: <?= number_format(Narudzba::zbrajanje($_SESSION['autoriziran']->sifra), 2,',','.') ?> kn</h2>
+    <hr>
+    <form action="<?= App::config('url') ?>narudzba/akcija" method="POST">
+        <div class="grid-x shoppingorder">
+            <div class="registration-part">
+                <h3 class="text-center">Ispunite podatke:</h3>
+
+                <label for="firstname">Ime</label>
+                <input type="text" name="firstname" id="firstname" aria-describedby="messageFirstname" value="<?= $customer->firstname ?>">
+                <p class="help-text red-message" id="messageFirstname">
+                    <?= $poruka->firstname ?>
+                </p>
+
+                <label for="lastname">Prezime</label>
+                <input type="text" name="lastname" id="lastname" aria-describedby="messageLastname" value="<?= $customer->lastname ?>">
+                <p class="help-text red-message" id="messageLastname">
+                    <?= $poruka->lastname ?>
+                </p>
+
+                <label for="email">email</label>
+                <input type="email" name="email" id="email" aria-describedby="messageEmail" placeholder="vas.email@gmail.com" value="<?= $customer->email ?>">
+                <p class="help-text red-message" id="messageEmail">
+                    <?= $poruka->email ?>
+                </p>
+
+                <label for="street">kucniBroj</label>
+                <input type="text" name="street" id="street" aria-describedby="messageStreet" placeholder="Ulica Republike, 3a" value="<?= $customer->street ?>">
+                <p class="help-text red-message" id="messageStreet">
+                    <?= $poruka->kucniBroj ?>
+                </p>
+                <label for="street">ulica</label>
+                <input type="text" name="street" id="street" aria-describedby="messageStreet" placeholder="Ulica Republike, 3a" value="<?= $customer->street ?>">
+                <p class="help-text red-message" id="messageStreet">
+                    <?= $poruka->ulica ?>
+                </p>
+
+                <label for="city">Grad</label>
+                <input type="text" name="city" id="city" aria-describedby="messageCity" placeholder="Osijek" value="<?= $customer->city ?>">
+                <p class="help-text red-message" id="messageCity">
+                    <?= $poruka->grad ?>
+                </p>
+
+                </p>
+
+                </table>
+                <input type="hidden" name="id" value="<?= $kupac->sifra ?>">
+            </div>
         </div>
-    </div>
-    <form class="search-product large-6 cell blue-sky" action="<?= App::config('url') ?>kosarica/<?= $type ?>" method="get">
-        <div class="ui-widget">
-            <input type="text" name="search" id="search" class="search-product" placeholder="Traži po imenu, prezimenu, proizvodu, gradu..." <?= (isset($_GET['search'])) ? 'value="' . $_GET['search'] . '"' : '' ?>>
+        <div class="text-center">
+        <button  class="button"><a style="color:Yellow" href="<?=App::config('url')?>kosarica/index"> Prihvaćam</a></button>
         </div>
     </form>
-    <?php if ($ukupnoNarudzbi == 0) : ?>
-        <legend class="total-product-message">Nema niti jedne narudžbe.</legend>
-    <?php elseif ($ukupnoNarudzbi == 1) : ?>
-        <legend class="total-product-message">Pronađena samo jedna narudžba.</legend>
-    <?php elseif ($ukupnoNarudzbi > 1) : ?>
-        <legend class="total-product-message">Pronađeno ukupno <?= $ukupnoNarudzbi ?> narudžbi.</legend>
-
-    <?php endif; ?>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Ime</th>
-                <th>Prezime</th>
-                <th>Grad</th>
-                <th>Online</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($narudzba as $kosarica) : ?>
-                <tr>
-                    <td><?= $kosarica->kosaricaSifra ?></td>
-                    <td><?= $kosarica->ime ?></td>
-                    <td><?= $kosarica->prezime ?></td>
-                    <td><?= $kosarica->grad ?></td>
-                    <td><i class="fas fa-info-circle modal" data-id="<?= $kosarica->kosaricaSifra ?>" data-open="modal<?= $kosarica->kosaricaSifra ?>" title="Pogledaj detalje narudžbe."></i></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
 </div>

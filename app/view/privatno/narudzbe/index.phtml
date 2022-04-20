@@ -4,36 +4,11 @@
             <h5>Naš katalog možete pregledati <a style= " text-decoration: underline " href="<?= App::config('url'); ?>proizvod/">ovdje</a><label class="no-cart-search" for="search"></label></h5>
         </div>
     <?php else : ?>
-        <h4 style="color:CornFlowerBlue">Igre koje ste izabrali:</h4>
         <hr>
-        <table class="hover">
-            <thead>
-                <th>Naziv</th>
-                <th class="text-center">Cijena</th>
-                <th class="text-center">Kolicina</th>
-                <th class="text-center">Iznos</th>
-                <th></th>
-            </thead>
-            <tbody>
-                <?php foreach ($narudzba as $proizvod) : ?>
-                    <tr sifra="proizvod<?= $proizvod->sifra ?>">
-                        <td><?= $proizvod->priceFormatted ?> kn</td>
-                        <td><?= $proizvod->kolicina ?></td>
-                        <td><?= number_format($proizvod->price * $proizvod->kolicina, 2,',','.') ?> kn</td>
-                    </tr>
-                        </div>
-                        <div class="grsifra-x grsifra-padding-x text-center">
-                            <div class="large-6 large-offset-1">
-                                <h3><?= $proizvod->priceFormatted ?> kn</h3>
-                            </div>          
-                        </div>  
-                    </div>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <hr>
-        <h2 style="color:CornFlowerBlue" sifra="sumTotal">Iznos računa: <?= number_format(Narudzba::zbrajanje($_SESSION['autoriziran']->sifra), 2,',','.') ?> kn</h2>
+        <h2 style="color:CornFlowerBlue" sifra="sumTotal">Iznos koji morate platiti: <?= number_format(Narudzba::zbrajanje($_SESSION['autoriziran']->sifra), 2,',','.') ?> kn</h2>
         <br>
-        <button class="button secondary">Završi kupovinu!</button>
+        <button  class="button"><a style="color:Yellow" href="<?=App::config('url')?>kosarica/index"> Završi kupovinu</a></button>
+
     <?php endif; ?>
 </div>
+
